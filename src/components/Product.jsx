@@ -33,7 +33,7 @@ export default function Product() {
   }
 
   return (
-    <div className="max-w-[90%] mx-auto mt-10">
+    <div className="max-w-[90%] mx-auto mt-20">
       <h1 className="text-5xl text-center font-bold pb-10">Product Dashboard</h1>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-4">
         {products.map((product) => (
@@ -45,11 +45,11 @@ export default function Product() {
             <div className="w-full h-40 flex items-center justify-center">
               <img
                 src={product.image}
-                alt={product.title}
+            
                 className="max-h-full object-contain"
               />
             </div>
-            <h3 className="text-sm font-medium mt-2 line-clamp-2">
+            <h3 className="text-sm font-medium mt-4 line-clamp-2 text-center ">
               {product.title}
             </h3>
             <p className="text-gray-700 font-bold mt-1">${product.price}</p>

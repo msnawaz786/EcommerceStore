@@ -23,11 +23,17 @@ export default function Cart() {
   const toggleEditing = (id) => {
     setIsEditing(isEditing === id ? null : id)
   }
+  const totalPrice = products.reduce(
+    (acc, product) => acc + product.price * product.quantity,
+    0
+  );
+  
 
   return (
     <div>
       <div className="max-w-[90%] mx-auto mt-10">
         <h1 className="text-center text-5xl font-bold text-blue-500 pb-5">My Cart</h1>
+
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-4">
           {products.map((product) => (
             <div
@@ -43,23 +49,22 @@ export default function Cart() {
               </div>
               <h3 className="text-sm font-medium mt-2 line-clamp-2">{product.title}</h3>
               <p className="text-gray-700 mt-1">
-
-  <span className="font-bold text-blue-600">${(product.price * product.quantity).toFixed(2)}</span>
-</p>
-
-
+                <span className="font-bold text-blue-600">${(product.price * product.quantity).toFixed(2)}</span>
+              </p>
 
               <div className="flex items-center mt-3">
-                {isEditing !== product.id &&<div
-                  className="bg-black text-white w-8 h-8 flex items-center justify-center rounded-full cursor-pointer"
-                  onClick={() => toggleEditing(product.id)}
-                >
-                  {product.quantity}
-                </div>}
+                {isEditing !== product.id && (
+                  <div
+                    className="bg-black text-white w-8 h-8 flex items-center justify-center rounded-full cursor-pointer"
+                    onClick={() => toggleEditing(product.id)}
+                  >
+                    {product.quantity}
+                  </div>
+                )}
                 {isEditing === product.id && (
                   <div className="flex items-center ml-4 space-x-2 bg-black rounded-lg">
                     <button
-                      className=" text-white px-3 py-1 rounded-lg"
+                      className="text-white px-3 py-1 rounded-lg"
                       onClick={() => handleDecrease(product.id)}
                     >
                       -
@@ -68,13 +73,13 @@ export default function Cart() {
                       {product.quantity}
                     </div>
                     <button
-                      className=" text-white px-3 py-1 rounded-lg"
+                      className="text-white px-3 py-1 rounded-lg"
                       onClick={() => handleIncrease(product.id)}
                     >
                       +
                     </button>
                     <button
-                      className="\ text-white px-3 py-1 rounded-lg"
+                      className="text-white px-3 py-1 rounded-lg"
                       onClick={() => handleRemove(product.id)}
                     >
                       <RiDeleteBinLine />
@@ -84,6 +89,13 @@ export default function Cart() {
               </div>
             </div>
           ))}
+        </div>
+
+     
+        <div className="flex justify-center mt-10">
+          <button className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-all duration-200">
+            Go to Checklist <span>Total price : {totalPrice.toFixed(2)}</span>
+          </button>
         </div>
       </div>
     </div>

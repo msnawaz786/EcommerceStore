@@ -18,8 +18,16 @@ export default function ProductModal({ isOpen, onClose, product }) {
   return (
     <Modal isOpen={isOpen} onClose={onClose} size="lg" isCentered>
       <ModalOverlay />
-      <ModalContent>
-        <ModalCloseButton />
+      <ModalContent   borderRadius="2xl">
+        <ModalCloseButton 
+           style={{
+            fontSize: "12px",
+            color: "black",
+            padding: "8px",
+            backgroundColor: "#e0e0e0",
+            borderRadius: "50%",
+          }}
+        />
         <ModalBody>
           <div className="">
             <div className="w-full h-40 flex items-center justify-center">
@@ -45,6 +53,7 @@ export default function ProductModal({ isOpen, onClose, product }) {
                 </button>
           </div>
         </ModalBody>
+   
       </ModalContent>
     </Modal>
   );
